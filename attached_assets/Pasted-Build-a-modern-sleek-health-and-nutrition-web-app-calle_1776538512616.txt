@@ -1,0 +1,30 @@
+Build a modern, sleek health and nutrition web app called Beven. Use React with Tailwind CSS. The design should feel fresh, modern and energetic — light mode by default, clean sans-serif fonts (like Inter or DM Sans), smooth transitions, and card-based layouts. Use a color palette of soft white and warm off-white backgrounds, with vibrant emerald green as the primary accent, and soft coral or amber as a secondary accent for highlights and warnings. Think the feeling of a premium wellness brand — airy, clean, and motivating. Subtle shadows on cards, rounded corners everywhere, and gentle gradients on hero sections.
+The app has 3 core features:
+1. Nutrition Tracker (not calorie tracker)
+
+Users log meals by searching or adding food items
+Instead of showing calories as the main metric, show a Nutrition Score (0-100) based on protein, fiber, vitamins, and low sugar/saturated fat
+Show a daily nutrition dashboard with visual progress rings (not just calorie bars)
+Include a simple food database with common whole foods
+
+2. Local Food Library
+
+Users can add their own local/regional food products manually (name, nutritional info, price, store)
+These saved items appear first in search results when logging meals
+Each item shows a nutrition score and price per serving
+
+3. Weekly Budget Planner
+
+Users set a weekly food budget
+As they plan meals for the week, the app calculates total estimated cost
+Show a "Nutrition-to-Budget ratio" score — rewarding high nutrition at low cost
+Display a weekly summary card showing: total spend, average daily nutrition score, and best value meal of the week
+
+General requirements:
+
+Mobile-first responsive design
+Smooth page transitions and micro-animations
+Use localStorage to persist user data (no backend needed for now)
+Clean bottom navigation bar with 4 tabs: Today, Library, Planner, Profile
+Onboarding screen on first launch asking: name, weekly budget, and dietary preference (omnivore, vegetarian, vegan)
+Use Recharts for all graphs and nutrition visuals

@@ -2,6 +2,7 @@ import { Switch, Route, Router as WouterRouter, Redirect, useLocation } from "wo
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { ThemeProvider } from "next-themes";
 import { AnimatePresence } from "framer-motion";
 import NotFound from "@/pages/not-found";
 import BottomNav from "@/components/BottomNav";
@@ -27,7 +28,7 @@ function ProtectedRoute({ component: Component, ...rest }: any) {
 
 function Router() {
   return (
-    <div className="w-full max-w-md mx-auto bg-background min-h-[100dvh] relative shadow-2xl sm:border-x pb-20">
+    <div className="w-full max-w-md mx-auto bg-background min-h-[100dvh] relative shadow-2xl sm:border-x pb-20 overflow-x-hidden">
       <AnimatePresence mode="wait">
         <Switch>
           <Route path="/onboarding" component={Onboarding} />
@@ -60,14 +61,16 @@ function Router() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
-          <div className="min-h-[100dvh] bg-muted/30 flex justify-center">
-            <Router />
-          </div>
-        </WouterRouter>
-        <Toaster />
-      </TooltipProvider>
+      <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+        <TooltipProvider>
+          <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
+            <div className="min-h-[100dvh] bg-muted/30 flex justify-center">
+              <Router />
+            </div>
+          </WouterRouter>
+          <Toaster />
+        </TooltipProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
 @import "tailwindcss";
 @import "tw-animate-css";
@@ -68,75 +68,77 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-/* DARK MODE — MacroFactor-style dark theme (always active) */
+/* APPLE HIG THEME — Clean, Native, iOS-inspired */
 :root {
-  --button-outline: rgba(255, 255, 255, .10);
-  --badge-outline: rgba(255, 255, 255, .06);
-  --opaque-button-border-intensity: 9;
-  --elevate-1: rgba(255, 255, 255, .04);
-  --elevate-2: rgba(255, 255, 255, .09);
+  --button-outline: rgba(0, 0, 0, .05);
+  --badge-outline: rgba(0, 0, 0, .02);
+  --opaque-button-border-intensity: -4;
+  --elevate-1: rgba(0, 0, 0, .01);
+  --elevate-2: rgba(0, 0, 0, .03);
 
-  --background: 232 45% 8%;
-  --foreground: 0 0% 98%;
+  /* iOS System Grouped Background */
+  --background: 240 24% 96%;
+  --foreground: 0 0% 0%;
 
-  --border: 229 50% 20%;
+  --border: 240 6% 90%;
 
-  --card: 232 45% 12%;
-  --card-foreground: 0 0% 98%;
-  --card-border: 229 50% 20%;
+  /* iOS Secondary System Grouped Background */
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 0%;
+  --card-border: 240 6% 90%;
 
-  --sidebar: 232 45% 8%;
-  --sidebar-foreground: 0 0% 98%;
-  --sidebar-border: 229 50% 20%;
-  --sidebar-primary: 229 100% 53%;
+  --sidebar: 240 24% 96%;
+  --sidebar-foreground: 0 0% 0%;
+  --sidebar-border: 240 6% 90%;
+  --sidebar-primary: 211 100% 50%; /* System Blue */
   --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 232 50% 20%;
-  --sidebar-accent-foreground: 169 87% 74%;
-  --sidebar-ring: 169 87% 74%;
+  --sidebar-accent: 240 5% 93%;
+  --sidebar-accent-foreground: 0 0% 0%;
+  --sidebar-ring: 211 100% 50%;
 
-  --popover: 232 45% 12%;
-  --popover-foreground: 0 0% 98%;
-  --popover-border: 229 50% 20%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 0%;
+  --popover-border: 240 6% 90%;
 
-  --primary: 229 100% 53%;
+  --primary: 211 100% 50%; /* System Blue */
   --primary-foreground: 0 0% 100%;
 
-  --secondary: 169 87% 74%;
-  --secondary-foreground: 232 45% 8%;
+  --secondary: 135 59% 49%; /* System Green */
+  --secondary-foreground: 0 0% 100%;
 
-  --muted: 232 45% 16%;
-  --muted-foreground: 232 20% 64%;
+  --muted: 240 5% 93%;
+  --muted-foreground: 240 2% 57%; /* System Gray */
 
-  --accent: 232 50% 20%;
-  --accent-foreground: 169 87% 74%;
+  --accent: 240 5% 93%;
+  --accent-foreground: 211 100% 50%;
 
-  --destructive: 4 86% 58%;
+  --destructive: 2 100% 59%; /* System Red */
   --destructive-foreground: 0 0% 100%;
 
-  --input: 232 45% 16%;
-  --ring: 169 87% 74%;
+  --input: 240 6% 90%;
+  --ring: 211 100% 50%;
 
-  --chart-1: 229 100% 53%;
-  --chart-2: 169 87% 74%;
-  --chart-3: 200 90% 60%;
-  --chart-4: 260 80% 65%;
-  --chart-5: 150 70% 50%;
+  --chart-1: 211 100% 50%; /* Blue */
+  --chart-2: 135 59% 49%; /* Green */
+  --chart-3: 31 100% 50%;  /* Orange */
+  --chart-4: 260 100% 68%; /* Purple */
+  --chart-5: 198 100% 41%; /* Teal */
 
-  --app-font-sans: 'DM Sans', sans-serif;
+  --app-font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --app-font-serif: Georgia, serif;
-  --app-font-mono: Menlo, monospace;
-  --radius: 0.75rem;
+  --app-font-mono: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+  --radius: 12px; /* Standard iOS radius */
 
-  --shadow-2xs: 0px 1px 2px 0px rgba(0, 0, 0, 0.35);
-  --shadow-xs: 0px 1px 3px 0px rgba(0, 0, 0, 0.4);
-  --shadow-sm: 0px 1px 3px 0px rgba(0, 0, 0, 0.45), 0px 1px 2px -1px rgba(0, 0, 0, 0.35);
-  --shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.5), 0px 1px 3px -1px rgba(0, 0, 0, 0.35);
-  --shadow-md: 0px 4px 12px 0px rgba(0, 0, 0, 0.55), 0px 2px 4px -1px rgba(0, 0, 0, 0.35);
-  --shadow-lg: 0px 8px 20px 0px rgba(0, 0, 0, 0.6), 0px 4px 6px -1px rgba(0, 0, 0, 0.4);
-  --shadow-xl: 0px 12px 32px 0px rgba(0, 0, 0, 0.65), 0px 8px 10px -1px rgba(0, 0, 0, 0.4);
-  --shadow-2xl: 0px 20px 48px 0px rgba(0, 0, 0, 0.7);
+  --shadow-2xs: 0px 1px 2px 0px rgba(0, 0, 0, 0.03);
+  --shadow-xs: 0px 1px 3px 0px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0px 2px 4px 0px rgba(0, 0, 0, 0.05);
+  --shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0px 8px 16px 0px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0px 12px 24px 0px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0px 16px 32px 0px rgba(0, 0, 0, 0.12);
+  --shadow-2xl: 0px 24px 48px 0px rgba(0, 0, 0, 0.15);
 
-  --tracking-normal: 0em;
+  --tracking-normal: -0.011em; /* SF Pro default tracking */
   --spacing: 0.25rem;
 
   --sidebar-primary-border: hsl(var(--sidebar-primary));
@@ -155,128 +157,77 @@
   --destructive-border: hsl(from hsl(var(--destructive)) h s calc(l + var(--opaque-button-border-intensity)) / alpha);
 }
 
-/* Keep .dark in sync */
+/* APPLE DARK MODE */
 .dark {
-  --button-outline: rgba(255, 255, 255, .10);
-  --badge-outline: rgba(255, 255, 255, .06);
-  --opaque-button-border-intensity: 9;
-  --elevate-1: rgba(255, 255, 255, .04);
-  --elevate-2: rgba(255, 255, 255, .09);
-  --background: 232 45% 8%;
-  --foreground: 0 0% 98%;
-  --border: 229 50% 20%;
-  --card: 232 45% 12%;
-  --card-foreground: 0 0% 98%;
-  --card-border: 229 50% 20%;
-  --sidebar: 232 45% 8%;
-  --sidebar-foreground: 0 0% 98%;
-  --sidebar-border: 229 50% 20%;
-  --sidebar-primary: 229 100% 53%;
-  --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 232 50% 20%;
-  --sidebar-accent-foreground: 169 87% 74%;
-  --sidebar-ring: 169 87% 74%;
-  --popover: 232 45% 12%;
-  --popover-foreground: 0 0% 98%;
-  --popover-border: 229 50% 20%;
-  --primary: 229 100% 53%;
-  --primary-foreground: 0 0% 100%;
-  --secondary: 169 87% 74%;
-  --secondary-foreground: 232 45% 8%;
-  --muted: 232 45% 16%;
-  --muted-foreground: 232 20% 64%;
-  --accent: 232 50% 20%;
-  --accent-foreground: 169 87% 74%;
-  --destructive: 4 86% 58%;
-  --destructive-foreground: 0 0% 100%;
-  --input: 232 45% 16%;
-  --ring: 169 87% 74%;
-  --chart-1: 229 100% 53%;
-  --chart-2: 169 87% 74%;
-  --chart-3: 200 90% 60%;
-  --chart-4: 260 80% 65%;
-  --chart-5: 150 70% 50%;
-  --shadow-2xs: 0px 1px 2px 0px rgba(0, 0, 0, 0.35);
-  --shadow-xs: 0px 1px 3px 0px rgba(0, 0, 0, 0.4);
-  --shadow-sm: 0px 1px 3px 0px rgba(0, 0, 0, 0.45), 0px 1px 2px -1px rgba(0, 0, 0, 0.35);
-  --shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.5), 0px 1px 3px -1px rgba(0, 0, 0, 0.35);
-  --shadow-md: 0px 4px 12px 0px rgba(0, 0, 0, 0.55), 0px 2px 4px -1px rgba(0, 0, 0, 0.35);
-  --shadow-lg: 0px 8px 20px 0px rgba(0, 0, 0, 0.6), 0px 4px 6px -1px rgba(0, 0, 0, 0.4);
-  --shadow-xl: 0px 12px 32px 0px rgba(0, 0, 0, 0.65), 0px 8px 10px -1px rgba(0, 0, 0, 0.4);
-  --shadow-2xl: 0px 20px 48px 0px rgba(0, 0, 0, 0.7);
+  --button-outline: rgba(255, 255, 255, .05);
+  --badge-outline: rgba(255, 255, 255, .02);
+  --opaque-button-border-intensity: 6;
+  --elevate-1: rgba(255, 255, 255, .02);
+  --elevate-2: rgba(255, 255, 255, .04);
+
+  --background: 0 0% 0%; /* Pure black for OLED */
+  --foreground: 0 0% 100%;
+
+  --border: 240 2% 14%;
+
+  --card: 240 2% 10%; /* System Gray 6 in Dark Mode */
+  --card-foreground: 0 0% 100%;
+  --card-border: 240 2% 14%;
+
+  --sidebar: 0 0% 0%;
+  --sidebar-foreground: 0 0% 100%;
+  --sidebar-border: 240 2% 14%;
+  --sidebar-primary: 210 100% 52%; /* Dark Blue */
+  --sidebar-accent: 240 2% 14%;
+  --sidebar-accent-foreground: 0 0% 100%;
+  
+  --popover: 240 2% 10%;
+  --popover-foreground: 0 0% 100%;
+  --popover-border: 240 2% 14%;
+
+  --primary: 210 100% 52%;
+  --secondary: 135 63% 51%; /* Dark Green */
+
+  --accent: 240 2% 14%;
+  --accent-foreground: 210 100% 52%;
+  
+  --ring: 210 100% 52%;
+  
+  --shadow-2xs: 0px 1px 2px 0px rgba(0, 0, 0, 0.5);
+  --shadow-xs: 0px 1px 3px 0px rgba(0, 0, 0, 0.6);
+  --shadow-sm: 0px 2px 4px 0px rgba(0, 0, 0, 0.6);
+  --shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.7);
+  --shadow-md: 0px 8px 16px 0px rgba(0, 0, 0, 0.8);
+  --shadow-lg: 0px 12px 24px 0px rgba(0, 0, 0, 0.9);
+  --shadow-xl: 0px 16px 32px 0px rgba(0, 0, 0, 1.0);
+  --shadow-2xl: 0px 24px 48px 0px rgba(0, 0, 0, 1.0);
 }
 
-/* LIGHT THEME */
-.light-theme {
-  --button-outline: rgba(0, 0, 0, .10);
-  --badge-outline: rgba(0, 0, 0, .06);
-  --opaque-button-border-intensity: -6;
-  --elevate-1: rgba(0, 0, 0, .03);
-  --elevate-2: rgba(0, 0, 0, .07);
+@layer utilities {
+  .ios-blur {
+    @apply backdrop-blur-xl bg-white/70 dark:bg-black/70;
+  }
 
-  --background: 0 0% 100%;
-  --foreground: 232 45% 12%;
+  .ios-tab-blur {
+    @apply backdrop-blur-2xl bg-white/80 dark:bg-black/80 border-t border-border;
+  }
 
-  --border: 210 20% 85%;
-
-  --card: 0 0% 100%;
-  --card-foreground: 232 45% 12%;
-  --card-border: 210 20% 85%;
-
-  --sidebar: 0 0% 98%;
-  --sidebar-foreground: 232 45% 12%;
-  --sidebar-border: 210 20% 85%;
-  --sidebar-primary: 229 100% 53%;
-  --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 210 20% 92%;
-  --sidebar-accent-foreground: 232 45% 12%;
-  --sidebar-ring: 229 100% 53%;
-
-  --popover: 0 0% 100%;
-  --popover-foreground: 232 45% 12%;
-  --popover-border: 210 20% 85%;
-
-  --primary: 229 100% 53%;
-  --primary-foreground: 0 0% 100%;
-
-  --secondary: 169 80% 45%;
-  --secondary-foreground: 0 0% 100%;
-
-  --muted: 229 20% 95%;
-  --muted-foreground: 230 20% 45%;
-
-  --accent: 229 20% 92%;
-  --accent-foreground: 229 100% 53%;
-
-  --destructive: 4 80% 55%;
-  --destructive-foreground: 0 0% 100%;
-
-  --input: 210 20% 88%;
-  --ring: 229 100% 53%;
-
-  --chart-1: 229 100% 53%;
-  --chart-2: 169 80% 45%;
-  --chart-3: 200 85% 60%;
-  --chart-4: 260 75% 65%;
-  --chart-5: 150 70% 50%;
-
-  --shadow-2xs: 0px 1px 2px 0px rgba(0, 0, 0, 0.06);
-  --shadow-xs: 0px 1px 3px 0px rgba(0, 0, 0, 0.08);
-  --shadow-sm: 0px 1px 3px 0px rgba(0, 0, 0, 0.1), 0px 1px 2px -1px rgba(0, 0, 0, 0.06);
-  --shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.12), 0px 1px 3px -1px rgba(0, 0, 0, 0.06);
-  --shadow-md: 0px 4px 12px 0px rgba(0, 0, 0, 0.14), 0px 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0px 8px 20px 0px rgba(0, 0, 0, 0.16), 0px 4px 6px -1px rgba(0, 0, 0, 0.08);
-  --shadow-xl: 0px 12px 32px 0px rgba(0, 0, 0, 0.18), 0px 8px 10px -1px rgba(0, 0, 0, 0.08);
-  --shadow-2xl: 0px 20px 48px 0px rgba(0, 0, 0, 0.20);
+  .ios-nav-blur {
+    @apply backdrop-blur-xl bg-background/80 border-b border-border;
+  }
 }
 
 @layer base {
   * {
-    @apply border-border;
+    @apply border-border tracking-tight;
   }
 
   body {
     @apply font-sans antialiased bg-background text-foreground;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
   }
 }
 

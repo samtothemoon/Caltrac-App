@@ -5,6 +5,13 @@ export type UserProfile = {
   memberSince: string;
   isComplete: boolean;
   isGoodEnoughMode: boolean;
+  sex?: string;
+  dob?: string;
+  height?: { value: number; unit: 'cm' | 'ft' };
+  weight?: { value: number; unit: 'kg' | 'lbs' };
+  activityLevel?: string;
+  goal?: string;
+  plan?: string;
 };
 
 const defaultProfile: UserProfile = {

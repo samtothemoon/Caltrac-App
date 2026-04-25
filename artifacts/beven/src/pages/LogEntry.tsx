@@ -1,14 +1,24 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLogs } from "@/hooks/useLogs";
 import { useUser } from "@/hooks/useUser";
 import { parseMealText } from "@/lib/ai-parser";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Loader2, Sparkles, Check, X, Info, Zap } from "lucide-react";
+import { Loader2, Sparkles, Check, X, Info, Zap, Mic, MicOff } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useLocation } from "wouter";
 import { cn } from "@/lib/utils";
+
+// Web Speech API Types
+interface SpeechRecognitionErrorEvent extends Event {
+  error: string;
+}
+
+interface SpeechRecognitionEvent extends Event {
+  resultIndex: number;
+  results: SpeechRecognitionResultList;
+}
 
 export default function LogEntry() {
   const { addLog } = useLogs();
@@ -19,6 +29,63 @@ export default function LogEntry() {
   const [text, setText] = useState("");
   const [isParsing, setIsParsing] = useState(false);
   const [result, setResult] = useState<any>(null);
+  const [isListening, setIsListening] = useState(false);
+  
+  const recognitionRef = useRef<any>(null);
+
+  useEffect(() => {
+    // Initialize Speech Recognition
+    const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+    if (SpeechRecognition) {
+      const recognition = new SpeechRecognition();
+      recognition.continuous = true;
+      recognition.interimResults = true;
+      recognition.lang = 'en-US';
+
+      recognition.onresult = (event: SpeechRecognitionEvent) => {
+        let interimTranscript = '';
+        let finalTranscript = '';
+
+        for (let i = event.resultIndex; i < event.results.length; ++i) {
+          if (event.results[i].isFinal) {
+            finalTranscript += event.results[i][0].transcript;
+          } else {
+            interimTranscript += event.results[i][0].transcript;
+          }
+        }
+        
+        if (finalTranscript) {
+          setText(prev => prev + (prev ? ' ' : '') + finalTranscript);
+        }
+      };
+
+      recognition.onerror = (event: SpeechRecognitionErrorEvent) => {
+        console.error('Speech recognition error:', event.error);
+        setIsListening(false);
+        toast({ title: "Voice Error", description: "Could not access microphone.", variant: "destructive" });
+      };
+
+      recognition.onend = () => {
+        setIsListening(false);
+      };
+
+      recognitionRef.current = recognition;
+    }
+  }, []);
+
+  const toggleListening = () => {
+    if (!recognitionRef.current) {
+      toast({ title: "Not Supported", description: "Voice input is not supported in this browser.", variant: "destructive" });
+      return;
+    }
+
+    if (isListening) {
+      recognitionRef.current.stop();
+    } else {
+      setIsListening(true);
+      recognitionRef.current.start();
+    }
+  };
 
   const handleParse = async () => {
     if (!text.trim()) return;
@@ -28,12 +95,19 @@ export default function LogEntry() {
     try {
       const parsed = await parseMealText(text);
       setResult({ ...parsed, text });
-    } catch (err) {
-      toast({ title: "Error parsing text", description: "Please try again.", variant: "destructive" });
+    } catch (err: any) {
+      console.error("Parse Error:", err);
+      toast({ 
+        title: "Analysis Failed", 
+        description: err.message || "Please check your internet connection or API key.", 
+        variant: "destructive" 
+      });
     } finally {
       setIsParsing(false);
     }
+
   };
+
 
   const handleSave = () => {
     if (!result) return;
@@ -85,14 +159,25 @@ export default function LogEntry() {
           <div className="flex-1 flex flex-col gap-6">
             <div className="relative flex-1 group">
               <Textarea 
-                className="resize-none h-full text-xl p-8 bg-card rounded-[2rem] border-2 border-muted focus-visible:ring-4 focus-visible:ring-primary/10 shadow-sm transition-all font-medium placeholder:text-muted-foreground/40 leading-relaxed"
+                className="resize-none h-full text-xl p-8 bg-card rounded-[2rem] border-2 border-muted focus-visible:ring-4 focus-visible:ring-primary/10 shadow-sm transition-all font-medium placeholder:text-muted-foreground/40 leading-relaxed pr-16"
                 placeholder="e.g., Had 2 eggs and coffee for breakfast..."
                 value={text}
                 onChange={(e) => setText(e.target.value)}
                 disabled={isParsing}
               />
+              <button
+                onClick={toggleListening}
+                className={cn(
+                  "absolute top-6 right-6 p-3 rounded-2xl transition-all active:scale-95 shadow-lg",
+                  isListening 
+                    ? "bg-red-500 text-white animate-pulse shadow-red-500/20" 
+                    : "bg-primary/10 text-primary hover:bg-primary/20"
+                )}
+              >
+                {isListening ? <MicOff className="w-5 h-5" /> : <Mic className="w-5 h-5" />}
+              </button>
               <div className="absolute bottom-6 right-6 text-[10px] font-bold text-muted-foreground/40 uppercase tracking-widest pointer-events-none group-focus-within:opacity-0 transition-opacity">
-                AI Powered Input
+                {isListening ? "Listening..." : "AI Powered Input"}
               </div>
             </div>
             
@@ -100,7 +185,7 @@ export default function LogEntry() {
               size="lg" 
               className="w-full h-16 rounded-2xl font-bold text-lg shadow-xl shadow-primary/20 transition-all active:scale-95 disabled:opacity-50"
               onClick={handleParse}
-              disabled={isParsing || !text.trim()}
+              disabled={isParsing || !text.trim() || isListening}
             >
               {isParsing ? (
                 <>
@@ -116,6 +201,7 @@ export default function LogEntry() {
             </Button>
           </div>
         ) : (
+
           <AnimatePresence>
             <motion.div 
               initial={{ opacity: 0, scale: 0.9 }}
